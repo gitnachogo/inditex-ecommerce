@@ -54,7 +54,11 @@ public class H2PriceRepository implements PriceRepository {
 
     @Override
     public Price findActivePrice(PriceBrandId brandId, PriceProductId productId, PriceDateTime time) {
-        final var priceDTO = this.jpaPriceDao.findActivePrice(brandId.getValue(), productId.getValue(), time.getValue()).orElseThrow(() -> new PriceNotFoundException(PRICE_NOT_FOUND_MESSAGE));
+        final var priceDTO = this.jpaPriceDao.findActivePrice(
+                brandId.getValue(),
+                productId.getValue(),
+                time.getValue()
+        ).orElseThrow(() -> new PriceNotFoundException(PRICE_NOT_FOUND_MESSAGE));
         return this.h2PriceDtoMapper.toDomain(priceDTO);
     }
 }
