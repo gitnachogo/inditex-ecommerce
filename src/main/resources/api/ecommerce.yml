@@ -1,0 +1,104 @@
+openapi: 3.0.0
+info:
+  title: Ecommerce API
+  description: API to expose the ecommerce features
+  version: 0.1.0
+servers:
+  - url: 'http://localhost:8080'
+tags:
+  - name: prices
+    description: The prices endpoint
+paths:
+  /api/v1/prices/active:
+    get:
+      summary: Get the active price according to given parameters
+      operationId: getActivePrice
+      tags:
+        - prices
+      parameters:
+        - name: time
+          in: query
+          description: The time
+          required: true
+          example: '2024-03-21T15:00:00Z'
+          schema:
+            type: string
+            format: date-time
+        - name: productId
+          in: query
+          description: The ID of the product
+          required: true
+          example: 1
+          schema:
+            type: integer
+        - name: brandId
+          in: query
+          description: The ID of the brand
+          required: true
+          example: 2
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved active price information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivePriceResponse'
+        '400':
+          description: Bad Request - Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not found prices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                message: "Price not found"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                message: Internal server error. Please try again later
+components:
+  schemas:
+    ActivePriceResponse:
+      type: object
+      properties:
+        priceId:
+          type: integer
+          example: 1
+        productId:
+          type: integer
+          example: 1
+        brandId:
+          type: integer
+          example: 2
+        quantity:
+          type: number
+          format: float
+          example: 99.99
+        startDate:
+          type: string
+          format: date-time
+          example: '2024-03-21T15:00:00Z'
+        endDate:
+          type: string
+          format: date-time
+          example: '2024-03-21T15:00:00Z'
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 404
+        message:
+          type: string
+          example: Invalid request parameters
