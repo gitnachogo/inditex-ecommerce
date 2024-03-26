@@ -33,18 +33,6 @@ public class Price extends AggregateRoot<PriceId> implements Comparable<Price> {
         this.priceEndDate = priceEndDate;
     }
 
-    public Boolean hasBrandId(final PriceBrandId priceBrandId) {
-        return priceBrandId.equals(this.priceBrandId);
-    }
-    public Boolean hasProductId(final PriceProductId priceProductId) {
-        return priceProductId.equals(this.priceProductId);
-    }
-
-    public Boolean inTime(final PriceDateTime currentDateTime) {
-        return currentDateTime.isGreaterThanOrEqual(this.priceStartDate) &&
-                currentDateTime.isLowerThanOrEqual(this.priceEndDate);
-    }
-
     public PricePrimitives toPrimitives() {
         return new PricePrimitives(
                 this.getId().getValue(),

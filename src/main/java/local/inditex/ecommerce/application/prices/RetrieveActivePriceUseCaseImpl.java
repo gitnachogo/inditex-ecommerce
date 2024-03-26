@@ -7,23 +7,16 @@ import org.springframework.stereotype.Service;
 public class RetrieveActivePriceUseCaseImpl implements RetrieveActivePriceUseCase {
 
     private final PriceRepository priceRepository;
-    private final ActivePriceService activePriceService;
 
     public RetrieveActivePriceUseCaseImpl(
-            final PriceRepository priceRepository,
-            final ActivePriceService activePriceService) {
+            final PriceRepository priceRepository) {
         this.priceRepository = priceRepository;
-        this.activePriceService = activePriceService;
     }
     @Override
     public Price handle(final RetrieveActivePriceQuery retrieveActivePriceQuery) {
-        final var priceCollection = this.priceRepository.findAll();
-
-        final var activePriceQuery = new ActivePriceQuery(
+        return this.priceRepository.findActivePrice(
                 retrieveActivePriceQuery.priceBrandId(),
                 retrieveActivePriceQuery.priceProductId(),
-                retrieveActivePriceQuery.priceStartDate(),
-                priceCollection);
-        return this.activePriceService.handle(activePriceQuery);
+                retrieveActivePriceQuery.priceStartDate());
     }
 }
