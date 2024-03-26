@@ -13,6 +13,7 @@ public class Price extends AggregateRoot<PriceId> implements Comparable<Price> {
     private final PricePriority pricePriority;
     private final PriceDateTime priceStartDate;
     private final PriceDateTime priceEndDate;
+
     public Price(
             PriceId id,
             PriceBrandId priceBrandId,

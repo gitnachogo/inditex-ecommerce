@@ -26,6 +26,7 @@ public class H2PriceRepository implements PriceRepository {
         this.jpaPriceDao = jpaPriceDao;
         this.h2PriceDtoMapper = h2PriceDtoMapper;
     }
+
     @Override
     public Price findById(PriceId id) {
         throw new NotImplementedException(METHOD_NOT_IMPLEMENTED_YET);

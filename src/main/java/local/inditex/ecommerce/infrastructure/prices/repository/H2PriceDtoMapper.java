@@ -4,8 +4,6 @@ import local.inditex.ecommerce.domain.prices.Price;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.List;
-
 @Mapper(componentModel = "spring")
 public interface H2PriceDtoMapper {
 
@@ -18,5 +16,4 @@ public interface H2PriceDtoMapper {
     @Mapping(target = "priceStartDate", expression = "java(new PriceDateTime(priceDto.getStartDate()))")
     @Mapping(target = "priceEndDate", expression = "java(new PriceDateTime(priceDto.getEndDate()))")
     Price toDomain(final PriceDto priceDto);
-    List<Price> toDomain(final List<PriceDto> priceDtoCollection);
 }

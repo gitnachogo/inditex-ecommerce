@@ -9,7 +9,7 @@ public class PriceCurrency extends ValueObject<String> {
     }
 
     private void ensureHasThreeCharacters(final String value) {
-        if (value.length() !=3 ) {
+        if (value.length() != 3) {
             throw new IllegalArgumentException("Price currency length should be equals to 3");
         }
     }

@@ -10,7 +10,8 @@ import java.time.OffsetDateTime;
 
 public class RetrievePricesQueryFactory {
 
-    private RetrievePricesQueryFactory() {}
+    private RetrievePricesQueryFactory() {
+    }
 
     public static RetrieveActivePriceQuery create(
             final OffsetDateTime time,

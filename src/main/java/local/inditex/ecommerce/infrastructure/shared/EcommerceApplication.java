@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("local.inditex.ecommerce.infrastructure")
 public class EcommerceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EcommerceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EcommerceApplication.class, args);
+    }
 
 }
